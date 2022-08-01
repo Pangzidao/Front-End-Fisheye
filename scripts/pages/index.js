@@ -1,12 +1,11 @@
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
-        fetch("/data/photographers.json")
-            .then(res => res.json())
-            .then(d => console.log(d))
-
+        fetch("data/photographers.json")
+            .then(response => response.json())
+            .then(data => console.log(data.photographers))
         const photographers = [
             {
-                "name": "Ma data test",
+                "name": "data",
                 "id": 1,
                 "city": "Paris",
                 "country": "France",
