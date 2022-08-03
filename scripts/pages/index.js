@@ -2,7 +2,11 @@
         // Penser à remplacer par les données récupérées dans le json
         fetch("data/photographers.json")
             .then(response => response.json())
-            .then(data => console.log(data.photographers))
+            .then(data => {
+                photographers.splice(0,2,data.photographers[0],data.photographers[1])
+                photographers.push(data.photographers[2],data.photographers[3],data.photographers[4],data.photographers[5],)
+            })
+
         const photographers = [
             {
                 "name": "data",
@@ -23,14 +27,17 @@
                 "portrait": "account.png"
             },
         ]
+
+        console.log(photographers)
+
         // et bien retourner le tableau photographers seulement une fois
         return ({
             photographers: [...photographers, ...photographers, ...photographers]})
     }
 
+
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
-
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
