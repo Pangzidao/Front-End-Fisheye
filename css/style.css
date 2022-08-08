@@ -34,17 +34,52 @@ h1 {
 .photographer_section article {
     justify-self: center;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.photographer_section article a {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-decoration: none;
+}
+
+.photographer_section article figure {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.photographer_section article figure img {
+    width: 300px;
+    height: auto;
+    object-fit: fill;
 }
 
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin: 0px;
 }
 
-.photographer_section article img {
-    height: 200px;
-    width: 200px;
+
+
+.photographer_section article h3 {
+    color: #D3573C;
+    font-size: 13px;
+    margin: 0px;
+}
+
+.photographer_section article p {
+    font-size: 10px;
+    margin: 0px;
 }
