@@ -6,8 +6,7 @@
         // Penser à remplacer par les données récupérées dans le json
         const photographers = [ ...responseJS.photographers]
         // et bien retourner le tableau photographers seulement une fois
-        return ({
-            photographers: [...photographers,]})
+        return {photographers}
     }
 
     async function displayData(photographers) {
