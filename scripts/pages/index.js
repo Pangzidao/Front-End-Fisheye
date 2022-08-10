@@ -4,14 +4,7 @@
         const responseJS = await responseJSON.json();
         console.log(responseJS.photographers);
         // Penser à remplacer par les données récupérées dans le json
-        const photographers = [
-                responseJS.photographers[0],
-                responseJS.photographers[1],
-                responseJS.photographers[2],
-                responseJS.photographers[3],
-                responseJS.photographers[4],
-                responseJS.photographers[5],
-        ]
+        const photographers = [ ...responseJS.photographers]
         // et bien retourner le tableau photographers seulement une fois
         return ({
             photographers: [...photographers,]})
