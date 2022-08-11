@@ -62,7 +62,7 @@ h1 {
 .photographer_section article figure img {
     width: 300px;
     height: auto;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .photographer_section article h2 {

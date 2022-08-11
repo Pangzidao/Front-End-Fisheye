@@ -6,10 +6,12 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const lien = document.createElement("a");
-        lien.setAttribute("href", "#");
+        lien.setAttribute("href", "photographer.html");
+        lien.setAttribute("arialabel", `lien vers la page de ${name}`);
         const figure = document.createElement("figure");
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", `photo de ${name}`)
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement("h3");
@@ -27,7 +29,7 @@ function photographerFactory(data) {
         article.appendChild(h3);
         article.appendChild(p);
         article.appendChild(p2);
-        article.addEventListener("click", ()=>console.log(id));
+        lien.addEventListener("click", ()=> console.log(data));
         return (article);
     }
     return { name, picture, getUserCardDOM }
