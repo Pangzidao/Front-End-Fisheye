@@ -15,6 +15,7 @@ async function getPhotographers() {
     const photographer = photographers.find(element => element.id === parseInt(id));
     console.log(photographers);
     console.log(photographer);
-    return {photographers}
+    return {photographer}
 }
 getPhotographers();
+
