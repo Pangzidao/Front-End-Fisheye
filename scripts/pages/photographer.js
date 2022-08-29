@@ -35,21 +35,33 @@ function header(photographer) {
 
 function media(photographerMedias, photographer){
     const medias = document.getElementById("medias");
+    let html = "";
     photographerMedias.forEach((photographerMedia) => {
         
-        const image = document.createElement("img");
-        const imageTitle = document.createElement("h2");
-        imageTitle.textContent = photographerMedia.title;
-        const mediaPicture = `assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}`;
-        console.log(mediaPicture);
-        medias.appendChild(imageTitle);
-
-        if (photographerMedia.image){
-            image.setAttribute("src", mediaPicture);
-            image.setAttribute("width", "100px");
-            medias.appendChild(image);
+        if (photographerMedia.image !== undefined){
+            html += `
+            <figure>
+                <img src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}"/>
+                <figcaption>${photographerMedia.title}</figcaption>
+                <p>${photographerMedia.likes}</p>
+                <i class="fa-solid fa-heart"></i>
+            </figure>            `
         };
+
+        if (photographerMedia.video !== undefined){
+            html += `
+            <video width="320" height="240" controls>
+                <source src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}">
+                Your browser does not support the video tag.
+            </video>
+            <h2>${photographerMedia.title}</h2>
+            <p>${photographerMedia.likes}</p>
+            <i class="fa-solid fa-heart"></i> 
+            `    
+        };        
     });
+
+    medias.innerHTML = html;
 }
 
 async function init() {
