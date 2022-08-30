@@ -11,16 +11,23 @@
   <body>
     <header>
       <img src="assets/images/logo.png" class="logo" />
+
     </header>
     <main id="main">
-      <header class="photograph-header">
-        <h1 id="name">FirstName Name</h1>
-        <h2 id="location">Location</h2>
-        <p id="tagline">Tagline</p>
+      <section class="photograph-header">
+        <div id = "infos">
+          <h1 id="name">FirstName Name</h1>
+          <h2 id="location">Location</h2>
+          <p id="tagline">Tagline</p>
+        </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <img id="photographer-picture" src="" alt = "image du photographe"/>
-      </header>
+      </section>
       <article id="medias"></article>
+      <div id="encart">
+        <p id="totalLikes">nombres de likes total</i></p>
+        <p id="price">prix</p>
+      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -31,12 +38,26 @@
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input />
+						<input id="prenom"/>
+					</div>
+          <div>
+						<label>Nom</label>
+						<input id="nom"/>
+					</div>
+          <div>
+						<label>Email</label>
+						<input id="email"/>
+					</div>
+          <div>
+						<label>Votre message</label>
+						<textarea id="message"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox">
+    </div>
     <script src="/scripts/factories/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
