@@ -31,56 +31,6 @@ function header(photographer) {
     photographerPicture.setAttribute("alt", `photo de ${photographer.name}`);
 };
 
-function media(photographerMedias, photographer){
-    const medias = document.getElementById("medias");
-    const totalNumberOfLikes = document.getElementById("totalLikes");
-    const price = document.getElementById("price");
-    let html = "";
-    photographerMedias.forEach((photographerMedia) => {
-        let index = photographerMedias.indexOf(photographerMedia);
-        
-        if (photographerMedia.image !== undefined){
-            
-            html += `
-            <div class="media">
-                <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>
-                <div class="mediaTitle"
-                    <h2>${photographerMedia.title}</h2>
-                    <div class = "likes">                
-                        <p>${photographerMedia.likes}</p>
-                        <i class="fa-solid fa-heart" onclick="addLikes()"></i>
-                    </div>
-                </div>
-            </div>            
-            `
-        };
-
-        
-        if (photographerMedia.video !== undefined){
-            html += `
-            <div class="media photosVideo">
-                <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
-                    <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}" >
-                </video>
-                <div class="mediaTitle"
-                    <h2>${photographerMedia.title}</h2>
-                    <div class = "likes">                
-                        <p>${photographerMedia.likes}</p>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div> 
-            </div>
-            `    
-        };
-
-    });
-
-
-    medias.innerHTML = html;
-    totalNumberOfLikes.innerHTML = `234 383  <i class="fa-solid fa-heart">`
-    price.innerText = `${photographer.price} €/jour`;
-}
-
 
 async function init() {
     // Récupère les datas des photographes
@@ -92,74 +42,6 @@ async function init() {
 
 init();
 
-
-//Lightbox
-
-function lightBoxVideo(photographer, photographerMedias, index){
-
-    return `
-    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-    <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
-    <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
-    </video>
-    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-    <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
-    <p>${photographerMedias[index].title}</p>
-    `
-}
-
-function lightBoxPhoto(photographer, photographerMedias, index){
-    return `
-    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-    <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" width = "150px" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
-    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-    <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
-    <p>${photographerMedias[index].title}</p>
-    `
-}
-
-
-const lightBox = document.getElementById("lightbox");
-
-async function openLightBox(index){
-    const { photographer } = await getPhotographer();
-    const { photographerMedias } = await getPhotographer();
-
-    lightBox.style.display = "block";
-
-    if (photographerMedias[index].image === undefined){
-        lightBox.innerHTML = lightBoxVideo(photographer, photographerMedias, index);
-    }else{
-        lightBox.innerHTML = lightBoxPhoto(photographer, photographerMedias, index);
-    };
-};
-
-function closeLightBox(){
-    lightBox.style.display = "none";
-}
-
-async function changePhotoRight(index){
-    const { photographerMedias } = await getPhotographer();
-
-    if (index === photographerMedias.length -1){
-        index = 0;
-    }else{
-        index ++;
-    };
-    openLightBox(index);
-}
-
-async function changePhotoLeft(index){
-    const { photographerMedias } = await getPhotographer();
-
-    if (index === 0){
-        index = photographerMedias.length-1;
-    }else{
-        index --;
-    };
-
-    openLightBox(index);
-}
 
 
 
