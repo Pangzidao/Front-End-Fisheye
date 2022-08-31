@@ -38,8 +38,9 @@ function media(photographerMedias, photographer){
     let html = "";
     photographerMedias.forEach((photographerMedia) => {
         let index = photographerMedias.indexOf(photographerMedia);
-
+        
         if (photographerMedia.image !== undefined){
+            
             html += `
             <div class="media">
                 <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>
@@ -47,10 +48,11 @@ function media(photographerMedias, photographer){
                     <h2>${photographerMedia.title}</h2>
                     <div class = "likes">                
                         <p>${photographerMedia.likes}</p>
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart" onclick="addLikes()"></i>
                     </div>
                 </div>
-            </div>            `
+            </div>            
+            `
         };
 
         
@@ -70,13 +72,15 @@ function media(photographerMedias, photographer){
             </div>
             `    
         };
+
     });
 
+
     medias.innerHTML = html;
-    console.log(medias);
     totalNumberOfLikes.innerHTML = `234 383  <i class="fa-solid fa-heart">`
     price.innerText = `${photographer.price} €/jour`;
 }
+
 
 async function init() {
     // Récupère les datas des photographes
@@ -88,65 +92,64 @@ async function init() {
 
 init();
 
+
+//Lightbox
+
+function lightBoxVideo(photographer, photographerMedias, index){
+
+    return `
+    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
+    <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
+    <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
+    </video>
+    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
+    <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
+    <p>${photographerMedias[index].title}</p>
+    `
+}
+
+function lightBoxPhoto(photographer, photographerMedias, index){
+    return `
+    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
+    <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" width = "150px" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
+    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
+    <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
+    <p>${photographerMedias[index].title}</p>
+    `
+}
+
+
 const lightBox = document.getElementById("lightbox");
-let mediaIndex = 0;
 
 async function openLightBox(index){
     const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
-    console.log(photographer.name);
-    console.log(photographerMedias[index]);
 
     lightBox.style.display = "block";
 
     if (photographerMedias[index].image === undefined){
-        lightBox.innerHTML = `
-        <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
-        <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
-        </video>
-        <i class="fa-solid fa-angle-right" onclick="changePhoto(${index})"></i>
-        `
+        lightBox.innerHTML = lightBoxVideo(photographer, photographerMedias, index);
     }else{
-        lightBox.innerHTML = `
-        <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-        <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" width = "150px" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
-        <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-        `
+        lightBox.innerHTML = lightBoxPhoto(photographer, photographerMedias, index);
     };
-    
 };
 
+function closeLightBox(){
+    lightBox.style.display = "none";
+}
+
 async function changePhotoRight(index){
-    const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
-    
+
     if (index === photographerMedias.length -1){
         index = 0;
     }else{
         index ++;
     };
-
-    if (photographerMedias[index].image === undefined){
-        lightBox.innerHTML = `
-        <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-
-        <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
-        <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
-        </video>
-        <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-        `
-    }else{
-        lightBox.innerHTML = `
-        <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-
-        <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" width = "150px" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
-        <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-        `
-    };
+    openLightBox(index);
 }
 
 async function changePhotoLeft(index){
-    const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
 
     if (index === 0){
@@ -154,25 +157,8 @@ async function changePhotoLeft(index){
     }else{
         index --;
     };
-    console.log(index);
 
-    if (photographerMedias[index].image === undefined){
-        lightBox.innerHTML = `
-        <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-
-        <video  id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
-        <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
-        </video>
-        <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-        `
-    }else{
-        lightBox.innerHTML = `
-        <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
-
-        <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" width = "150px" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
-        <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
-        `
-    };
+    openLightBox(index);
 }
 
 
