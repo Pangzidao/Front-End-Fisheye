@@ -123,6 +123,10 @@
     margin: auto;
 }
 
+input, textarea{
+    font-size: xx-large;
+}
+
 .modal header {
     justify-content: space-between;
     width: 100%;
@@ -194,13 +198,52 @@ form textarea{
     top: 0;
     left: 0;
     display: none;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #lightbox i{
     color:#901C1C;
     font-size:xx-large;
+
 }
+
+#lightbox figure{
+    width: 80vw;
+    height:80vh;
+    position: relative;
+
+}
+
+#lightbox figure img{
+    width: inherit;
+    height: inherit;
+    object-fit: scale-down;
+}
+
+#lightbox figure video{
+    width: inherit;
+    height: inherit;
+    object-fit: scale-down;
+}
+
+#lightbox figure figcaption{
+    font-size: 24px;
+    font-weight:400;
+    color: #901C1C;
+    text-align: center;
+}
+
 
 #lightbox i:hover{
     cursor: pointer;
 }
+
+#lightbox figure .fa-xmark{
+    position: absolute;
+    top:0px;
+    right:-60px;
+    font-size: xx-large;
+}
+

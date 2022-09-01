@@ -35,8 +35,9 @@ function header(photographer) {
 async function init() {
     // Récupère les datas des photographes
     const { photographer } = await getPhotographer();
-    header(photographer);
     const { photographerMedias } = await getPhotographer();
+
+    header(photographer);
     media(photographerMedias, photographer);
 };
 
