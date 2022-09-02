@@ -12,12 +12,34 @@ async function getPhotographer() {
     const media = dataJS.media
     // et bien retourner le tableau photographers seulement une fois
     const photographer = photographers.find(element => element.id === parseInt(id));
-    const photographerMedias = media.filter(element => element.photographerId === parseInt(id));
     
+    const photographerMedias = media.filter(element => element.photographerId === parseInt(id));
+    //sorting medias by popularity
+    //photographerMedias.sort(function(a,b){return a.likes - b.likes});
+    
+    //sorting medias by date
+    /*
+    photographerMedias.sort(function(a,b){
+        a = new Date(a.date);
+        b = new Date(b.date);
+        return a - b});
+    */
+   
+        //sorting medias by title
+   /*
+    photographerMedias.sort(function(a, b){
+        let x = a.title.toLowerCase();
+        let y = b.title.toLowerCase();
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+      */
+
     return {photographer, photographerMedias}
 }
 
-function header(photographer) {
+function header(photographer, sortMedias) {
     const photographerName = document.getElementById("name");
     const photographerLocation = document.getElementById("location");
     const photographerTagline = document.getElementById("tagline");
