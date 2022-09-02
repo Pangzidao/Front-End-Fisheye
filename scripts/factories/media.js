@@ -1,3 +1,5 @@
+let index = 0;
+
 function media(photographerMedias, photographer){
     const medias = document.getElementById("medias");
     const totalNumberOfLikes = document.getElementById("totalLikes");
@@ -6,7 +8,7 @@ function media(photographerMedias, photographer){
     let photoOrVideo = "";
 
     photographerMedias.forEach((photographerMedia) => {
-        let index = photographerMedias.indexOf(photographerMedia);
+        index = photographerMedias.indexOf(photographerMedia);
 
         if (photographerMedia.image !== undefined){
             photoOrVideo = `<img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
@@ -24,7 +26,7 @@ function media(photographerMedias, photographer){
                 <h2>${photographerMedia.title}</h2>
                 <div class = "likes">                
                     <p>${photographerMedia.likes}</p>
-                    <i class="fa-solid fa-heart" onclick="addLikes()"></i>
+                    <i class="fa-solid fa-heart"></i>
                 </div>
             </div>
         </div>            
@@ -36,4 +38,3 @@ function media(photographerMedias, photographer){
     totalNumberOfLikes.innerHTML = `234 383  <i class="fa-solid fa-heart">`
     price.innerText = `${photographer.price} €/jour`;
 }
-

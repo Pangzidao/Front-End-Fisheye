@@ -3,13 +3,32 @@ const lightBox = document.getElementById("lightbox");
 
 window.onkeydown = keyPressed;
 
-function keyPressed(e) {
+async function keyPressed(e) {
+    const { photographerMedias } = await getPhotographer();
 
-    if (lightBox.style.display === "flex"){
-        console.log(e.code);
-        
+    if (lightBox.style.display === "flex" && e.code == "ArrowRight"){
+
+        if (index === photographerMedias.length -1){
+            index = 0;
+        }else{
+            index ++;
+        };
+        openLightBox(index); 
+    }
+
+    if (lightBox.style.display === "flex" && e.code == "ArrowLeft"){
+
+        if (index === 0){
+            index = photographerMedias.length-1;
+        }else{
+            index --;
+        };
+
+    openLightBox(index);    
     }
 }
+
+
 function lightBoxVideo(photographer, photographerMedias, index){
 
     return `
