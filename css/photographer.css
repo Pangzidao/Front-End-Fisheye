@@ -1,7 +1,8 @@
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    margin: 0 100px 100px 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -51,6 +52,48 @@
     height: 200px;
     object-fit: cover;
     margin: 20px;
+}
+
+#tri{
+    position: absolute;
+    top:400px;
+    left: 100px;
+    display: flex;
+    z-index: 1;
+}
+
+#tri h2{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#tri #menuTri{
+    margin-left: 30px;
+    padding: 0px 20px 0px 20px;
+    background-color: #901C1C;
+    border-radius: 5px;
+    height: 56px;
+    overflow: hidden;
+}
+
+#tri #menuTri:hover{
+    height: fit-content;
+}
+
+#tri #menuTri p{
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border-bottom: white solid 1px;
+    padding-bottom: 10px;
+}
+
+#tri #menuTri p:hover{
+    cursor: pointer;
+}
+
+#tri #menuTri p i{
+    margin-left: 25px;
 }
 
 #medias{
