@@ -3,10 +3,6 @@ let id = "";
 
 id = currentPage.slice(40,43);
 
-let mediaSorting = "Popularité";
-const sortingOptions = ["Popularité", "Date", "Titre"];
-
-
 async function getPhotographer() {
 
     const dataJSON = await fetch("/data/photographers.json");
@@ -58,31 +54,38 @@ function header(photographer) {
     photographerPicture.setAttribute("alt", `photo de ${photographer.name}`);
 };
 
-function sortingMenu(){
+const sortingMenu = document.getElementById("menuTri");
+let mediaSorting = "Popularité";
+const sortingOptions = ["Popularité", "Date", "Titre"];
 
-    const sortingMenu = document.getElementById("menuTri");
-
+function sortingMenuFactory(){
     sortingMenu.innerHTML = `
-        <p class="sortingOptions" data-index="1" id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
-        <p class="sortingOptions" data-index="1" id=${sortingOptions[1]}>${sortingOptions[1]}</p>
-        <p class="sortingOptions" data-index="1" id=${sortingOptions[2]}>${sortingOptions[2]}</p>
-    `
-    sortingMenu.addEventListener('click', onClick);
+    <p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
+    <p id=${sortingOptions[1]}>${sortingOptions[1]}</p>
+    <p id=${sortingOptions[2]}>${sortingOptions[2]}</p>
+`
+};
 
-    function onClick(event){
-        console.log(event.target.closest("p").id);
-        mediaSorting = event.target.closest("p").id;
+sortingMenu.addEventListener('click', onClick);
 
-        console.log(mediaSorting.getAttribute);
-        init();
-    }
+function onClick(event){
+
+    let mediaSortingDom = event.target.closest("p");
+    console.log(mediaSortingDom.id);
+    mediaSorting = mediaSortingDom.id;
+
+    sortingOptions.unshift(mediaSortingDom.id);
+    let lastIndex = sortingOptions.lastIndexOf(mediaSortingDom.id)
+    console.log(lastIndex);
+    sortingOptions.splice(lastIndex, 1);
+    console.log(sortingOptions);
+    init();
+}
 
     /*for (var i = 0; i < sortingOptions.length; i++) {
         console.log(sortingOptions[i].id);
         sortingOptions[0].setAttribute("id", mediaSorting);
       }*/
-
-};
 
 
 
@@ -93,7 +96,7 @@ async function init() {
 
     header(photographer);
     media(photographerMedias, photographer);
-    sortingMenu();
+    sortingMenuFactory();
 };
 
 init();
