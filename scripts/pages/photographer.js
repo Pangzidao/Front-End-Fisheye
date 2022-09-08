@@ -66,9 +66,9 @@ function sortingMenuFactory(){
 `
 };
 
-sortingMenu.addEventListener('click', onClick);
+sortingMenu.addEventListener('click', sorting);
 
-function onClick(event){
+function sorting(event){
 
     let mediaSortingDom = event.target.closest("p");
     console.log(mediaSortingDom.id);
@@ -81,11 +81,6 @@ function onClick(event){
     console.log(sortingOptions);
     init();
 }
-
-    /*for (var i = 0; i < sortingOptions.length; i++) {
-        console.log(sortingOptions[i].id);
-        sortingOptions[0].setAttribute("id", mediaSorting);
-      }*/
 
 
 
