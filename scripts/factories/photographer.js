@@ -15,10 +15,10 @@ function photographerFactory(data) {
                 <img src="${picture}" alt="photo de ${name}"/>
             </figure>
             <h2>${name}</h2>
-            <h3>${city}, ${country}</h3>
-            <p>${tagline}</p>
-            <p class="price">${price} €</p>
-        </a>        
+        </a>
+        <h3>${city}, ${country}</h3>
+        <p>${tagline}</p>
+        <p class="price">${price} €</p>        
         `;
 
         article.innerHTML = html;

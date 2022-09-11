@@ -1,10 +1,11 @@
 let index = 0;
 let heartIndex = 0;
 let photoLiked = [];
+let totalLikes = 0;
 
 function media(photographerMedias, photographer){
     const medias = document.getElementById("medias");
-    const totalNumberOfLikes = document.getElementById("totalLikes");
+    const totalNumberOfLikesDOM = document.getElementById("totalLikes");
     const price = document.getElementById("price");
     let html = "";
     let photoOrVideo = "";
@@ -19,6 +20,9 @@ function media(photographerMedias, photographer){
         }else{
             likes = photographerMedia.likes;
         }
+
+        totalLikes += likes;
+        console.log(totalLikes);
         
         if (photographerMedia.image !== undefined){
             photoOrVideo = `<img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
@@ -45,7 +49,7 @@ function media(photographerMedias, photographer){
 
 
     medias.innerHTML = html;
-    totalNumberOfLikes.innerHTML = `234 383  <i class="fa-solid fa-heart">`
+    totalNumberOfLikesDOM.innerHTML = `${totalLikes}  <i class="fa-solid fa-heart">`
     price.innerText = `${photographer.price} €/jour`;
 }
 
@@ -53,6 +57,5 @@ function liked(event){
     const heart = event.target;
     heartIndex = parseInt(heart.getAttribute("data-index"));
     photoLiked.push(heartIndex);
-    console.log(photoLiked);
     init();
 }

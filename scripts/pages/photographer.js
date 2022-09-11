@@ -71,14 +71,11 @@ sortingMenu.addEventListener('click', sorting);
 function sorting(event){
 
     let mediaSortingDom = event.target.closest("p");
-    console.log(mediaSortingDom.id);
     mediaSorting = mediaSortingDom.id;
 
     sortingOptions.unshift(mediaSortingDom.id);
     let lastIndex = sortingOptions.lastIndexOf(mediaSortingDom.id)
-    console.log(lastIndex);
     sortingOptions.splice(lastIndex, 1);
-    console.log(sortingOptions);
     init();
 }
 
@@ -88,7 +85,7 @@ async function init() {
     // Récupère les datas des photographes
     const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
-
+    totalLikes = 0;
     header(photographer);
     media(photographerMedias, photographer);
     sortingMenuFactory();
