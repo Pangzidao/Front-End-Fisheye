@@ -22,7 +22,6 @@ function media(photographerMedias, photographer){
         }
 
         totalLikes += likes;
-        console.log(totalLikes);
         
         if (photographerMedia.image !== undefined){
             photoOrVideo = `<img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;

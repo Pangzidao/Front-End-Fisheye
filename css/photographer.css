@@ -222,6 +222,27 @@ form textarea{
     border-radius: 5px;
 }
 
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 1em;
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: left;
+    line-height: 1;
+    opacity: 0;
+    transition: 0.3s;
+    color: #901C1C;
+}
+
+.formData[data-error-visible="true"]::after {
+    opacity: 1;
+}
+
+.formData[data-error-visible="true"] .text-control {
+    border: 2px solid #e54858;
+}
+
 #encart{
     width: 400px;
     height: 70px;
