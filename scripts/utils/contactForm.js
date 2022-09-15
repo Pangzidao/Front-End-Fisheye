@@ -131,8 +131,4 @@ function keyPressed(e) {
     if(e.code === "Escape"){
         closeModal()
     }
-
-    if(e.code === "Enter"){
-        submit()
-    }
 }

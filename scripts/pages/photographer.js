@@ -60,11 +60,12 @@ const sortingOptions = ["Popularité", "Date", "Titre"];
 
 function sortingMenuFactory(){
     sortingMenu.innerHTML = `
-    <p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
-    <p id=${sortingOptions[1]}>${sortingOptions[1]}</p>
-    <p id=${sortingOptions[2]}>${sortingOptions[2]}</p>
+<p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
+    <p id=${sortingOptions[1]} >${sortingOptions[1]}</p>
+    <p id=${sortingOptions[2]} >${sortingOptions[2]}</p>
 `
 };
+
 
 sortingMenu.addEventListener('click', sorting);
 
