@@ -10,8 +10,8 @@
   </head>
   <body>
     <header>
-      <a tabindex="1" href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
+      <a href="index.html" tabindex="1">
+        <img  src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
       </a>
     </header>
     <main id="main">
@@ -21,12 +21,12 @@
           <h2 id="location">Location</h2>
           <p id="tagline">Tagline</p>
         </div>
-        <button tabindex="-1" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" tabindex="2" onclick="displayModal()">Contactez-moi</button>
         <img id="photographer-picture" src="" alt = "image du photographe"/>
       </section>
       <section id="tri">
         <h2>Trier par</h2>
-        <div id="menuTri"></div>
+        <div tabindex="3" id="menuTri"></div>
       </section>
       <article id="medias"></article>
       <div id="encart">
@@ -43,21 +43,21 @@
 				<form>
 					<div class="formData" data-error="c'est une erreur">
 						<label>Prénom</label>
-						<input id="prenom"/>
+						<input class="modal-element" id="prenom"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
 						<label>Nom</label>
-						<input id="nom"/>
+						<input class="modal-element" id="nom"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
 						<label>Email</label>
-						<input id="email"/>
+						<input class="modal-element" id="email"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
 						<label>Votre message</label>
-						<textarea id="message"></textarea>
+						<textarea class="modal-element" id="message"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button modal-element">Envoyer</button>
 				</form>
 			</div>
 		</div>

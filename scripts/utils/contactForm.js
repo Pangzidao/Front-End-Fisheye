@@ -14,16 +14,20 @@ let nomFormat = false;
 let emailFormat = false;
 let messageFormat = false;
 
+let modalIsOpened = false;
 
 
 function displayModal() {
 	modal.style.display = "block";
-    pageBackground.style.opacity = "0.5";
+  pageBackground.style.opacity = "0.5";
+  modalIsOpened = true;
+  modalOpened()
 }
 
 function closeModal() {
     modal.style.display = "none";
     pageBackground.style.opacity = "1";
+    modalIsOpened = false;
 }
 
 modal.addEventListener("submit", submit)
@@ -132,3 +136,32 @@ function keyPressed(e) {
         closeModal()
     }
 }
+
+
+//trap focus inside modal
+
+function modalOpened(){
+
+  const modalElements = document.getElementsByClassName("modal-element");
+
+  let modalElementsFocusedIndex = 0
+  
+  document.addEventListener("keydown", function(e){  
+
+    if (e.code === "Tab"){
+      if (modalIsOpened === true){
+        e.preventDefault()
+        modalElements[modalElementsFocusedIndex].focus()
+
+        if (modalElementsFocusedIndex === modalElements.length -1){
+          modalElementsFocusedIndex = 0
+        }else{
+          modalElementsFocusedIndex ++
+        }
+      }
+    }
+  })
+}
+
+
+

@@ -5,9 +5,7 @@ window.onkeydown = keyPressed;
 
 async function keyPressed(e) {
     const { photographerMedias } = await getPhotographer();
-
     if (lightBox.style.display === "flex" && e.code == "ArrowRight"){
-
         if (index === photographerMedias.length -1){
             index = 0;
         }else{
@@ -61,6 +59,7 @@ async function openLightBox(index){
     const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
 
+    console.log("light box opened")
     lightBox.style.display = "flex";
 
     if (photographerMedias[index].image === undefined){

@@ -24,9 +24,9 @@ function media(photographerMedias, photographer){
         totalLikes += likes;
         
         if (photographerMedia.image !== undefined){
-            photoOrVideo = `<img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
+            photoOrVideo = `<img tabindex="${index + 5} id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
         }else{
-            photoOrVideo =` <video id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
+            photoOrVideo =` <video tabindex="${index + 5} class="page-element" id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
                                 <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}" >
                             </video>
                         `

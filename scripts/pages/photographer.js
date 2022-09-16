@@ -60,14 +60,21 @@ const sortingOptions = ["Popularité", "Date", "Titre"];
 
 function sortingMenuFactory(){
     sortingMenu.innerHTML = `
-<p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
+    <p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
     <p id=${sortingOptions[1]} >${sortingOptions[1]}</p>
     <p id=${sortingOptions[2]} >${sortingOptions[2]}</p>
 `
 };
 
+let pageElementFocused
+
+document.addEventListener("focusin", function(){
+    pageElementFocused = document.activeElement
+    console.log(pageElementFocused);
+})
 
 sortingMenu.addEventListener('click', sorting);
+
 
 function sorting(event){
 
