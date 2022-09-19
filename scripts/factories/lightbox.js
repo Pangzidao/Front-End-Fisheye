@@ -1,31 +1,7 @@
 const lightBox = document.getElementById("lightbox");
 
-
-window.onkeydown = keyPressed;
-
-async function keyPressed(e) {
-    const { photographerMedias } = await getPhotographer();
-    if (lightBox.style.display === "flex" && e.code == "ArrowRight"){
-        if (index === photographerMedias.length -1){
-            index = 0;
-        }else{
-            index ++;
-        };
-        openLightBox(index); 
-    }
-
-    if (lightBox.style.display === "flex" && e.code == "ArrowLeft"){
-
-        if (index === 0){
-            index = photographerMedias.length-1;
-        }else{
-            index --;
-        };
-
-    openLightBox(index);    
-    }
-}
-
+let lightBoxOpened = false;
+let currentIndex = 0
 
 function lightBoxVideo(photographer, photographerMedias, index){
 
@@ -59,18 +35,22 @@ async function openLightBox(index){
     const { photographer } = await getPhotographer();
     const { photographerMedias } = await getPhotographer();
 
-    console.log("light box opened")
     lightBox.style.display = "flex";
+    lightBoxOpened = true;
+
+    currentIndex = index;
 
     if (photographerMedias[index].image === undefined){
         lightBox.innerHTML = lightBoxVideo(photographer, photographerMedias, index);
     }else{
         lightBox.innerHTML = lightBoxPhoto(photographer, photographerMedias, index);
     };
+    console.log(currentIndex)
 };
 
 function closeLightBox(){
     lightBox.style.display = "none";
+    lightBoxOpened = false;
 }
 
 async function changePhotoRight(index){

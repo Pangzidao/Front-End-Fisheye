@@ -58,11 +58,12 @@ const sortingMenu = document.getElementById("menuTri");
 let mediaSorting = "Popularité";
 const sortingOptions = ["Popularité", "Date", "Titre"];
 
+
 function sortingMenuFactory(){
     sortingMenu.innerHTML = `
-    <p id=${sortingOptions[0]}>${sortingOptions[0]}<i class="fa-solid fa-angle-up"></i></p>
-    <p id=${sortingOptions[1]} >${sortingOptions[1]}</p>
-    <p id=${sortingOptions[2]} >${sortingOptions[2]}</p>
+    <p id=${sortingOptions[0]} tabindex="3">${sortingOptions[0]}  <i class="fa-solid fa-angle-up"></i></p>
+    <p id=${sortingOptions[1]} tabindex="4">${sortingOptions[1]}</p>
+    <p id=${sortingOptions[2]} tabindex="5">${sortingOptions[2]} </p>
 `
 };
 
@@ -70,19 +71,30 @@ let pageElementFocused
 
 document.addEventListener("focusin", function(){
     pageElementFocused = document.activeElement
-    console.log(pageElementFocused);
+    //console.log(pageElementFocused);
 })
 
-sortingMenu.addEventListener('click', sorting);
 
-
-function sorting(event){
-
+sortingMenu.addEventListener('click', function(event){
     let mediaSortingDom = event.target.closest("p");
     mediaSorting = mediaSortingDom.id;
+    console.log(mediaSorting)
+    sorting(mediaSorting)
+})
 
-    sortingOptions.unshift(mediaSortingDom.id);
-    let lastIndex = sortingOptions.lastIndexOf(mediaSortingDom.id)
+sortingMenu.addEventListener("keydown", function(event){
+    if (event.code === "Enter"){
+        mediaSorting = event.target.id;
+        console.log(mediaSorting)
+        sorting(mediaSorting)
+    }
+})
+
+
+function sorting(mediaSorting){
+
+    sortingOptions.unshift(mediaSorting);
+    let lastIndex = sortingOptions.lastIndexOf(mediaSorting)
     sortingOptions.splice(lastIndex, 1);
     init();
 }

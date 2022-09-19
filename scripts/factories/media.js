@@ -2,9 +2,36 @@ let index = 0;
 let heartIndex = 0;
 let photoLiked = [];
 let totalLikes = 0;
+const medias = document.getElementById("medias");
+
+medias.addEventListener("keydown", function(event){
+    if (event.code === "Enter"){
+
+        if (lightBoxOpened === false){
+            if (event.target.tagName === "I"){
+                liked(event)
+                console.log("heart")
+            }else{
+                openLightBox(event.target.id)
+            }
+        }
+    }
+
+    if (event.code === "ArrowRight"){
+        changePhotoRight(currentIndex)
+    }
+
+    if (event.code === "ArrowLeft"){
+        changePhotoLeft(currentIndex)
+    }
+
+    if (event.code === "Escape"){
+        closeLightBox()
+    }
+})
+
 
 function media(photographerMedias, photographer){
-    const medias = document.getElementById("medias");
     const totalNumberOfLikesDOM = document.getElementById("totalLikes");
     const price = document.getElementById("price");
     let html = "";
@@ -24,9 +51,9 @@ function media(photographerMedias, photographer){
         totalLikes += likes;
         
         if (photographerMedia.image !== undefined){
-            photoOrVideo = `<img tabindex="${index + 5} id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
+            photoOrVideo = `<img tabindex="${(index + 5) * 1.99}" id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
         }else{
-            photoOrVideo =` <video tabindex="${index + 5} class="page-element" id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
+            photoOrVideo =` <video tabindex="${(index + 5) * 1.99}" id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
                                 <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}" >
                             </video>
                         `
@@ -39,7 +66,7 @@ function media(photographerMedias, photographer){
                 <h2>${photographerMedia.title}</h2>
                 <div class = "likes">                
                     <p>${likes}</p>
-                    <i class="fa-solid fa-heart" onclick="liked(event)" data-index="${index}"></i>
+                    <i class="fa-solid fa-heart" tabindex="${(index + 5) * 2}" onclick="liked(event)" data-index="${index}"></i>
                 </div>
             </div>
         </div>            
