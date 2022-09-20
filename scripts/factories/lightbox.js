@@ -6,27 +6,27 @@ let currentIndex = 0
 function lightBoxVideo(photographer, photographerMedias, index){
 
     return `
-    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
+    <i class="fa-solid fa-angle-left" aria-label="Previous image" onclick="changePhotoLeft(${index})"></i>
     <figure> 
-        <video  id="${index}" onclick="openLightBox(${index})" controls >
+        <video  id="${index}" aria-label="${photographerMedias[index].title}" onclick="openLightBox(${index})" controls >
             <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].video}" >
         </video>
         <figcaption>${photographerMedias[index].title}</figcaption>
-        <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
+        <i class="fa-solid fa-xmark" aria-label="Close dialog" onclick="closeLightBox()"></i>
     </figure>
-    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
+    <i class="fa-solid fa-angle-right" aria-label="Next image" onclick="changePhotoRight(${index})"></i>
     `
 }
 
 function lightBoxPhoto(photographer, photographerMedias, index){
     return `
-    <i class="fa-solid fa-angle-left" onclick="changePhotoLeft(${index})"></i>
+    <i class="fa-solid fa-angle-left" aria-label="Previous image" onclick="changePhotoLeft(${index})"></i>
     <figure>
-        <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" alt = "photographie intitulé ${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
+        <img id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedias[index].image}" alt = "${photographerMedias[index].title}" onclick="openLightBox(${index})"/>
         <figcaption>${photographerMedias[index].title}</figcaption>
-        <i class="fa-solid fa-xmark" onclick="closeLightBox()"></i>
+        <i class="fa-solid fa-xmark" aria-label="Close dialog" onclick="closeLightBox()"></i>
     </figure>
-    <i class="fa-solid fa-angle-right" onclick="changePhotoRight(${index})"></i>
+    <i class="fa-solid fa-angle-right" aria-label="Next image" onclick="changePhotoRight(${index})"></i>
     `
 }
 
@@ -40,12 +40,13 @@ async function openLightBox(index){
 
     currentIndex = index;
 
+    lightBox.setAttribute("aria-label", `${photographerMedias[index].title} closeupview`)
+
     if (photographerMedias[index].image === undefined){
         lightBox.innerHTML = lightBoxVideo(photographer, photographerMedias, index);
     }else{
         lightBox.innerHTML = lightBoxPhoto(photographer, photographerMedias, index);
     };
-    console.log(currentIndex)
 };
 
 function closeLightBox(){

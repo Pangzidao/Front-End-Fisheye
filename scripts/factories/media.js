@@ -51,9 +51,9 @@ function media(photographerMedias, photographer){
         totalLikes += likes;
         
         if (photographerMedia.image !== undefined){
-            photoOrVideo = `<img tabindex="${(index + 5) * 1.99}" id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "photographie intitulé ${photographerMedia.title}" onclick="openLightBox(${index})"/>`;
+            photoOrVideo = `<img tabindex="${(index + 5) * 1.99}" id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "${photographerMedia.title} closeup view" onclick="openLightBox(${index})"/>`;
         }else{
-            photoOrVideo =` <video tabindex="${(index + 5) * 1.99}" id="${index}" width="320" height="240" onclick="openLightBox(${index})" >
+            photoOrVideo =` <video tabindex="${(index + 5) * 1.99}" id="${index}" width="320" height="240" onclick="openLightBox(${index})" aria-label="${photographerMedia.title} closeup view">
                                 <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}" >
                             </video>
                         `
@@ -64,7 +64,7 @@ function media(photographerMedias, photographer){
             ${photoOrVideo}
             <div class="mediaTitle"
                 <h2>${photographerMedia.title}</h2>
-                <div class = "likes">                
+                <div class = "likes" aria-label="likes">                
                     <p>${likes}</p>
                     <i class="fa-solid fa-heart" tabindex="${(index + 5) * 2}" onclick="liked(event)" data-index="${index}"></i>
                 </div>

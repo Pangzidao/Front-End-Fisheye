@@ -10,7 +10,7 @@ function photographerFactory(data) {
 
         html += `
         
-        <a href = "photographer.html?${id}" arialabel = "lien vers la page de ${name}">
+        <a href = "photographer.html?${id}" arialabel = "${name}">
             <figure>
                 <img src="${picture}" alt="photo de ${name}"/>
             </figure>

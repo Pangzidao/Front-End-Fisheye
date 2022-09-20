@@ -1,6 +1,6 @@
 let currentPage = window.location.href;
 let id = "";
-
+let currentPhotographer ="";
 id = currentPage.slice(40,43);
 
 async function getPhotographer() {
@@ -36,7 +36,8 @@ async function getPhotographer() {
             return 0;
           });
     };
-
+    currentPhotographer = photographer.name
+    console.log(currentPhotographer);
     return {photographer, photographerMedias}
 }
 
@@ -51,7 +52,7 @@ function header(photographer) {
     photographerLocation.innerText = photographer.city + "," + " " + photographer.country;
     photographerTagline.innerText = photographer.tagline;
     photographerPicture.setAttribute("src", picture);
-    photographerPicture.setAttribute("alt", `photo de ${photographer.name}`);
+    photographerPicture.setAttribute("alt", `${photographer.name}`);
 };
 
 const sortingMenu = document.getElementById("menuTri");
@@ -61,9 +62,9 @@ const sortingOptions = ["Popularité", "Date", "Titre"];
 
 function sortingMenuFactory(){
     sortingMenu.innerHTML = `
-    <p id=${sortingOptions[0]} tabindex="3">${sortingOptions[0]}  <i class="fa-solid fa-angle-up"></i></p>
-    <p id=${sortingOptions[1]} tabindex="4">${sortingOptions[1]}</p>
-    <p id=${sortingOptions[2]} tabindex="5">${sortingOptions[2]} </p>
+    <p id=${sortingOptions[0]} tabindex="3" aria-label="order by ${sortingOptions[0]}">${sortingOptions[0]}  <i class="fa-solid fa-angle-up"></i></p>
+    <p id=${sortingOptions[1]} tabindex="4" aria-label="order by ${sortingOptions[1]}">${sortingOptions[1]}</p>
+    <p id=${sortingOptions[2]} tabindex="5" aria-label="order by ${sortingOptions[2]}">${sortingOptions[2]} </p>
 `
 };
 

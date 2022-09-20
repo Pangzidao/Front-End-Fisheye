@@ -2,6 +2,7 @@ const pageBackground = document.getElementById("main");
 const modal = document.getElementById("contact_modal");
 const formData = document.querySelectorAll(".formData");
 
+const modalTitle = document.getElementById("modal-title")
 const prenom = document.getElementById("prenom");
 const nom = document.getElementById("nom");
 const email = document.getElementById("email");
@@ -21,6 +22,8 @@ function displayModal() {
 	modal.style.display = "block";
   pageBackground.style.opacity = "0.5";
   modalIsOpened = true;
+  modalTitle.innerHTML = `Contactez-moi<br/>${currentPhotographer}`;
+  modalTitle.setAttribute("aria-label", `Contact me ${currentPhotographer}`)
   modalOpened()
 }
 
@@ -29,6 +32,7 @@ function closeModal() {
     pageBackground.style.opacity = "1";
     modalIsOpened = false;
 }
+
 
 modal.addEventListener("submit", submit)
 

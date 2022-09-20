@@ -21,7 +21,7 @@
           <h2 id="location">Location</h2>
           <p id="tagline">Tagline</p>
         </div>
-        <button class="contact_button" tabindex="2" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" tabindex="2" onclick="displayModal()" aria-label="Contact Me">Contactez-moi</button>
         <img id="photographer-picture" src="" alt = "image du photographe"/>
       </section>
       <section id="tri">
@@ -37,24 +37,24 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal-title">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Close contact form"/>
         </header>
 				<form>
 					<div class="formData" data-error="c'est une erreur">
-						<label>Prénom</label>
+						<label for="prenom">Prénom</label>
 						<input class="modal-element" id="prenom"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
-						<label>Nom</label>
+						<label for="nom">Nom</label>
 						<input class="modal-element" id="nom"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
-						<label>Email</label>
+						<label for="email">Email</label>
 						<input class="modal-element" id="email"/>
 					</div>
           <div class="formData" data-error="c'est une erreur">
-						<label>Votre message</label>
+						<label for="message">Votre message</label>
 						<textarea class="modal-element" id="message"></textarea>
 					</div>
           <button class="contact_button modal-element">Envoyer</button>
