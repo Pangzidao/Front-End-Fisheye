@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const pageBackground = document.getElementById('main')
 const modal = document.getElementById('contact_modal')
 const formData = document.querySelectorAll('.formData')
@@ -100,10 +102,10 @@ function submit (e) {
     messageFormat = true
   }
 
-  if (prenomFormat == true &&
-    nomFormat == true &&
-    emailFormat == true &&
-    messageFormat == true
+  if (prenomFormat === true &&
+    nomFormat === true &&
+    emailFormat === true &&
+    messageFormat === true
   ) {
     e.preventDefault()
     closeModal()

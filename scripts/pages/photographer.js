@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const currentPage = window.location.href
 let id = ''
 let currentPhotographer = ''

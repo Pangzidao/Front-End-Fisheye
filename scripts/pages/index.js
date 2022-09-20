@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 async function getPhotographers () {
   // importation du JSON
   const dataJSON = await fetch('/data/photographers.json')

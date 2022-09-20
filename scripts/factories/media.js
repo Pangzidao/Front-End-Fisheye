@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let index = 0
 let heartIndex = 0
 const photoLiked = []
