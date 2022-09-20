@@ -1,65 +1,62 @@
-let index = 0;
-let heartIndex = 0;
-let photoLiked = [];
-let totalLikes = 0;
-const medias = document.getElementById("medias");
+let index = 0
+let heartIndex = 0
+const photoLiked = []
+let totalLikes = 0
+const medias = document.getElementById('medias')
 
-medias.addEventListener("keydown", function(event){
-    if (event.code === "Enter"){
-
-        if (lightBoxOpened === false){
-            if (event.target.tagName === "I"){
-                liked(event)
-                console.log("heart")
-            }else{
-                openLightBox(event.target.id)
-            }
-        }
+medias.addEventListener('keydown', function (event) {
+  if (event.code === 'Enter') {
+    if (lightBoxOpened === false) {
+      if (event.target.tagName === 'I') {
+        liked(event)
+        console.log('heart')
+      } else {
+        openLightBox(event.target.id)
+      }
     }
+  }
 
-    if (event.code === "ArrowRight"){
-        changePhotoRight(currentIndex)
-    }
+  if (event.code === 'ArrowRight') {
+    changePhotoRight(currentIndex)
+  }
 
-    if (event.code === "ArrowLeft"){
-        changePhotoLeft(currentIndex)
-    }
+  if (event.code === 'ArrowLeft') {
+    changePhotoLeft(currentIndex)
+  }
 
-    if (event.code === "Escape"){
-        closeLightBox()
-    }
+  if (event.code === 'Escape') {
+    closeLightBox()
+  }
 })
 
+function media (photographerMedias, photographer) {
+  const totalNumberOfLikesDOM = document.getElementById('totalLikes')
+  const price = document.getElementById('price')
+  let html = ''
+  let photoOrVideo = ''
+  let likes = 0
 
-function media(photographerMedias, photographer){
-    const totalNumberOfLikesDOM = document.getElementById("totalLikes");
-    const price = document.getElementById("price");
-    let html = "";
-    let photoOrVideo = "";
-    let likes = 0;
+  photographerMedias.forEach((photographerMedia) => {
+    index = photographerMedias.indexOf(photographerMedia)
 
-    photographerMedias.forEach((photographerMedia) => {
-        index = photographerMedias.indexOf(photographerMedia);
-        
+    if (photoLiked.includes(index)) {
+      likes = photographerMedia.likes + 1
+    } else {
+      likes = photographerMedia.likes
+    }
 
-        if (photoLiked.includes(index)){
-            likes = photographerMedia.likes + 1;
-        }else{
-            likes = photographerMedia.likes;
-        }
+    totalLikes += likes
 
-        totalLikes += likes;
-        
-        if (photographerMedia.image !== undefined){
-            photoOrVideo = `<img tabindex="${(index + 5) * 1.99}" id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "${photographerMedia.title} closeup view" onclick="openLightBox(${index})"/>`;
-        }else{
-            photoOrVideo =` <video tabindex="${(index + 5) * 1.99}" id="${index}" width="320" height="240" onclick="openLightBox(${index})" aria-label="${photographerMedia.title} closeup view">
+    if (photographerMedia.image !== undefined) {
+      photoOrVideo = `<img tabindex="${(index + 5) * 1.99}" id="${index}" src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.image}" width = "150px" alt = "${photographerMedia.title} closeup view" onclick="openLightBox(${index})"/>`
+    } else {
+      photoOrVideo = ` <video tabindex="${(index + 5) * 1.99}" id="${index}" width="320" height="240" onclick="openLightBox(${index})" aria-label="${photographerMedia.title} closeup view">
                                 <source  src="assets/photographers/Sample Photos/${photographer.name}/${photographerMedia.video}" >
                             </video>
                         `
-        };
+    };
 
-        html += `
+    html += `
         <div class="media">
             ${photoOrVideo}
             <div class="mediaTitle"
@@ -71,17 +68,16 @@ function media(photographerMedias, photographer){
             </div>
         </div>            
         `
-    });
+  })
 
-
-    medias.innerHTML = html;
-    totalNumberOfLikesDOM.innerHTML = `${totalLikes}  <i class="fa-solid fa-heart">`
-    price.innerText = `${photographer.price} €/jour`;
+  medias.innerHTML = html
+  totalNumberOfLikesDOM.innerHTML = `${totalLikes}  <i class="fa-solid fa-heart">`
+  price.innerText = `${photographer.price} €/jour`
 }
 
-function liked(event){
-    const heart = event.target;
-    heartIndex = parseInt(heart.getAttribute("data-index"));
-    photoLiked.push(heartIndex);
-    init();
+function liked (event) {
+  const heart = event.target
+  heartIndex = parseInt(heart.getAttribute('data-index'))
+  photoLiked.push(heartIndex)
+  init()
 }
