@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+
+// constantes pour le DOM
 const pageBackground = document.getElementById('main')
 const modal = document.getElementById('contact_modal')
 const formData = document.querySelectorAll('.formData')
@@ -10,14 +12,7 @@ const nom = document.getElementById('nom')
 const email = document.getElementById('email')
 const message = document.getElementById('message')
 
-// variables de vérification de la validité du formulaire
-let prenomFormat = false
-let nomFormat = false
-let emailFormat = false
-let messageFormat = false
-
-let modalIsOpened = false
-
+// affichage de la modale
 function displayModal () {
   modal.style.display = 'block'
   pageBackground.style.opacity = '0.5'
@@ -35,6 +30,14 @@ function closeModal () {
 
 modal.addEventListener('submit', submit)
 
+// variables de vérification de la validité du formulaire
+let prenomFormat = false
+let nomFormat = false
+let emailFormat = false
+let messageFormat = false
+let modalIsOpened = false
+
+// validation du formulaire
 function submit (e) {
   const prenomValue = prenom.value.trim()
   const nomValue = nom.value.trim()
@@ -118,6 +121,7 @@ function submit (e) {
   }
 }
 
+// fermeture de la modale
 window.onkeydown = keyPressed
 
 function keyPressed (e) {
@@ -126,8 +130,7 @@ function keyPressed (e) {
   }
 }
 
-// trap focus inside modal
-
+// navigation au clavier dans la modale
 function modalOpened () {
   const modalElements = document.getElementsByClassName('modal-element')
 

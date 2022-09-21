@@ -178,6 +178,11 @@ input, textarea{
     width: 100%;
 }
 
+.modal #modal-title{
+    text-align: left;
+    margin-bottom: 60px;
+}
+
 .modal header img {
     cursor: pointer;
 }
