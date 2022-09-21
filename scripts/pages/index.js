@@ -1,12 +1,14 @@
 /* eslint-disable no-undef */
+
+// importation des données des photographes
 async function getPhotographers () {
-  // importation du JSON
   const dataJSON = await fetch('/data/photographers.json')
   const dataJS = await dataJSON.json()
   const photographers = dataJS.photographers
   return { photographers }
 }
 
+// affichage de la landing page
 function displayData (photographers) {
   const photographersSection = document.querySelector('.photographer_section')
 
@@ -17,10 +19,11 @@ function displayData (photographers) {
   })
 };
 
+// fonction d'initialisation de la landing page
 async function init () {
-// Récupère les datas des photographes
   const { photographers } = await getPhotographers()
   displayData(photographers)
 };
 
+// initialisation de la landing page
 init()

@@ -1,21 +1,22 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+
+// récupération de l'id de la page du photographe
 const currentPage = window.location.href
 let id = ''
 let currentPhotographer = ''
 id = currentPage.slice(40, 43)
 
+// récupération des données pour la page du photographe
 async function getPhotographer () {
   const dataJSON = await fetch('/data/photographers.json')
   const dataJS = await dataJSON.json()
-  // Penser à remplacer par les données récupérées dans le json
   const photographers = dataJS.photographers
   const media = dataJS.media
-  // et bien retourner le tableau photographers seulement une fois
   const photographer = photographers.find(element => element.id === parseInt(id))
-
   const photographerMedias = media.filter(element => element.photographerId === parseInt(id))
-  // sorting medias by popularity
 
+  // tri des données média du photographe
   if (mediaSorting === 'Popularité') {
     photographerMedias.sort(function (a, b) { return b.likes - a.likes })
   };
@@ -38,10 +39,10 @@ async function getPhotographer () {
     })
   };
   currentPhotographer = photographer.name
-  console.log(currentPhotographer)
   return { photographer, photographerMedias }
 }
 
+// header de la page du photographe
 function header (photographer) {
   const photographerName = document.getElementById('name')
   const photographerLocation = document.getElementById('location')
@@ -56,6 +57,7 @@ function header (photographer) {
   photographerPicture.setAttribute('alt', `${photographer.name}`)
 };
 
+// gestion de la fonction de tri
 const sortingMenu = document.getElementById('menuTri')
 let mediaSorting = 'Popularité'
 const sortingOptions = ['Popularité', 'Date', 'Titre']
@@ -67,12 +69,6 @@ function sortingMenuFactory () {
     <p id=${sortingOptions[2]} tabindex="5" aria-label="order by ${sortingOptions[2]}">${sortingOptions[2]} </p>
 `
 };
-
-/*
-document.addEventListener('focusin', function () {
-  const pageElementFocused = document.activeElement
-  console.log(pageElementFocused)
-}) */
 
 sortingMenu.addEventListener('click', function (event) {
   const mediaSortingDom = event.target.closest('p')
@@ -96,6 +92,7 @@ function sorting (mediaSorting) {
   init()
 }
 
+// fonction d'initialisation de la page du photographe
 async function init () {
   // Récupère les datas des photographes
   const { photographer } = await getPhotographer()
@@ -106,4 +103,5 @@ async function init () {
   sortingMenuFactory()
 };
 
+// initialisation de la page du photographe
 init()

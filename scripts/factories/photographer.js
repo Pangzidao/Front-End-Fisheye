@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+
+// factory pour les cartes des photographes
 function photographerFactory (data) {
   const { name, portrait, city, country, tagline, price, id } = data
 

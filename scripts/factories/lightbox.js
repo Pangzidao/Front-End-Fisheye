@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-const lightBox = document.getElementById('lightbox')
 
+// constantes et variables de la lightbox
+const lightBox = document.getElementById('lightbox')
 let lightBoxOpened = false
 let currentIndex = 0
 
+// factory pour vidéo
 function lightBoxVideo (photographer, photographerMedias, index) {
   return `
     <i class="fa-solid fa-angle-left" aria-label="Previous image" onclick="changePhotoLeft(${index})"></i>
@@ -19,6 +21,7 @@ function lightBoxVideo (photographer, photographerMedias, index) {
     `
 }
 
+// factory pour photo
 function lightBoxPhoto (photographer, photographerMedias, index) {
   return `
     <i class="fa-solid fa-angle-left" aria-label="Previous image" onclick="changePhotoLeft(${index})"></i>
@@ -31,6 +34,7 @@ function lightBoxPhoto (photographer, photographerMedias, index) {
     `
 }
 
+// fonction d'ouverture de la lightbox
 async function openLightBox (index) {
   const { photographer } = await getPhotographer()
   const { photographerMedias } = await getPhotographer()
@@ -49,11 +53,13 @@ async function openLightBox (index) {
   };
 };
 
+// fonction de fermeture de la lightbox
 function closeLightBox () {
   lightBox.style.display = 'none'
   lightBoxOpened = false
 }
 
+// fonction de changement de photo vers la droite
 async function changePhotoRight (index) {
   const { photographerMedias } = await getPhotographer()
 
@@ -65,6 +71,7 @@ async function changePhotoRight (index) {
   openLightBox(index)
 }
 
+// fonction de changement de photo vers la gauche
 async function changePhotoLeft (index) {
   const { photographerMedias } = await getPhotographer()
 

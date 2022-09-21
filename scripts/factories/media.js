@@ -1,11 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+
+// constantes et variables
+const photoLiked = []
+const medias = document.getElementById('medias')
 let index = 0
 let heartIndex = 0
-const photoLiked = []
 let totalLikes = 0
-const medias = document.getElementById('medias')
 
+// gestion de la navigation au clavier sur la page du photographe
 medias.addEventListener('keydown', function (event) {
   if (event.code === 'Enter') {
     if (lightBoxOpened === false) {
@@ -31,6 +34,7 @@ medias.addEventListener('keydown', function (event) {
   }
 })
 
+// factory pour les vidéos et les photos du photographe
 function media (photographerMedias, photographer) {
   const totalNumberOfLikesDOM = document.getElementById('totalLikes')
   const price = document.getElementById('price')
@@ -77,6 +81,7 @@ function media (photographerMedias, photographer) {
   price.innerText = `${photographer.price} €/jour`
 }
 
+// fonction d'implémentation du like
 function liked (event) {
   const heart = event.target
   heartIndex = parseInt(heart.getAttribute('data-index'))
